@@ -3,6 +3,7 @@ var score = 0;
 var askingQuestion = true;
 
 function loadQuestion(quiz) {
+    console.log('loading next question')
 
     //set temporary variable for creating radio buttons
     var radioButton;
@@ -43,6 +44,7 @@ function loadQuestion(quiz) {
 }
 
 function checkAnswer(quiz) {
+    console.log('checking answer')
 
     //are we asking a question, or proceeding to next question?
     if (askingQuestion) {
@@ -70,15 +72,15 @@ function checkAnswer(quiz) {
             score++;
             document.getElementsByTagName('label')[correctIndex].style.color = "green";
             document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
-            document.getElementById('explanation').innerHTML = "<h3>Correct!</h3>";
+            document.getElementById('explanation').innerHTML = "<h5>Correct!</h5>";
         } else {
             document.getElementsByTagName('label')[correctIndex].style.color = "red";
             document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
-            document.getElementById('explanation').innerHTML = "<h3>Incorrect</h3>";
+            document.getElementById('explanation').innerHTML = "<h5>Incorrect</h5>";
         }
 
-        document.getElementById('explanation').innerHTML += '<p>' + quiz[currentQuestion]["explanation"] + '</p>';
-        document.getElementById('score').innerHTML = '<p>score: ' + score + ' right answers out of ' + quiz.length + ' possible</p>';
+        document.getElementById('explanation').innerHTML += `<p> ${quiz[currentQuestion]["explanation"]} </p>`;
+        document.getElementById('score').innerHTML = `<p>Score: ${score} right answers out of ${quiz.length} possible</p>`;
 
 
     } else { //reset form and move to next question
@@ -103,18 +105,26 @@ function checkAnswer(quiz) {
 }
 
 function showFinalResults() {
+    console.log('showing final results')
 
-    document.getElementById('content').innerHTML = '<h2>You Completed The Quiz</h2>';
+    document.getElementById('content').innerHTML = '<h5>You Completed The Quiz</h5>';
     document.getElementById('content').innerHTML += '<p>Below are your results:</p>';
-    document.getElementById('content').innerHTML += '<h2>' + score + ' out of ' + quiz.length + ' questions, ' + Math.round(score / quiz.length * 100) + '%</h2>';
+    document.getElementById('content').innerHTML += '<h5>' + score + ' out of ' + quiz.length + ' questions, ' + Math.round(score / quiz.length * 100) + '%</h5>';
 
     //delete the button
-    var button = document.getElementById('check');
+    const button = document.getElementById('check');
     button.parentNode.removeChild(button); //js requires you to delete elements from the parent
 
-    //remove question
-    document.getElementById('question').innerHTML = "";
 
+    var elem = document.getElementById("actions");
+    elem.innerHTML = "<a class=\"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect\" id=\"check\"\n" +
+        "               onclick=\"restart(quiz)\">\n" +
+        "                Restart Quiz\n" +
+        "            </a>\n"
+    elem = document.getElementById("question");
+    elem.parentNode.removeChild(elem);
+    elem = document.getElementById("score");
+    elem.parentNode.removeChild(elem);
 }
 
 function createQuiz(quiz) {
@@ -125,7 +135,7 @@ function createQuiz(quiz) {
         "        </div>\n" +
         "        <div class=\"mdl-card__supporting-text\">\n" +
         "            <div id=\"score\"><p>Score: 0 right answers out of 0 possible</p></div>\n" +
-        "            <h2 id=\"question\">Question here</h2>\n" +
+        "            <h5 id=\"question\">Question here</h5>\n" +
         "\n" +
         "            <div id=\"content\">\n" +
         "            </div>\n" +
@@ -134,13 +144,21 @@ function createQuiz(quiz) {
         "                <div id=\"explanation\"></div>\n" +
         "            </div>\n" +
         "        </div>\n" +
-        "        <div class=\"mdl-card__actions mdl-card--border\">\n" +
+        "        <div id=\"actions\" class=\"mdl-card__actions mdl-card--border\">\n" +
         "            <a class=\"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect\" id=\"check\"\n" +
         "               onclick=\"checkAnswer(quiz)\">\n" +
         "                Submit Answer\n" +
         "            </a>\n" +
         "        </div>\n" +
         "    </div>"
-    console.log("loading first question")
+
     loadQuestion(quiz);
+}
+
+function restart(quiz) {
+    document.getElementById('quiz').innerHTML = "";
+    currentQuestion = 0;
+    score = 0;
+    askingQuestion = true;
+    createQuiz(quiz);
 }
