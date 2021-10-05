@@ -5,6 +5,15 @@ var askingQuestion = true;
 function loadQuestion(quiz) {
     console.log('loading next question')
 
+    if (document.getElementById('card').classList.contains('wrong_answer')) {
+        document.getElementById('card').classList.remove('wrong_answer')
+    }
+
+    if (document.getElementById('card').classList.contains('correct_answer')) {
+        document.getElementById('card').classList.remove('correct_answer')
+    }
+
+
     //set temporary variable for creating radio buttons
     var radioButton;
 
@@ -73,10 +82,14 @@ function checkAnswer(quiz) {
             document.getElementsByTagName('label')[correctIndex].style.color = "green";
             document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
             document.getElementById('explanation').innerHTML = "<h5>Correct!</h5>";
+
+            document.getElementById('card').classList.add('correct_answer')
         } else {
             document.getElementsByTagName('label')[correctIndex].style.color = "red";
             document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
             document.getElementById('explanation').innerHTML = "<h5>Incorrect</h5>";
+
+            document.getElementById('card').classList.add('wrong_answer')
         }
 
         document.getElementById('explanation').innerHTML += `<p> ${quiz[currentQuestion]["explanation"]} </p>`;
@@ -129,7 +142,7 @@ function showFinalResults() {
 
 function createQuiz(quiz) {
     console.log("creating quiz");
-    document.getElementById('quiz').innerHTML = "<div class=\"demo-card-wide mdl-card mdl-shadow--2dp\">\n" +
+    document.getElementById('quiz').innerHTML = "<div id=\"card\" class=\"demo-card-wide mdl-card mdl-shadow--2dp\">\n" +
         "        <div class=\"mdl-card__title\">\n" +
         "            <h2 class=\"mdl-card__title-text\">Quiz!!!</h2>\n" +
         "        </div>\n" +
