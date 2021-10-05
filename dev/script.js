@@ -21,18 +21,19 @@ function loadQuestion(quiz) {
     document.getElementById('content').innerHTML = "";
 
     //loop through choices, and create radio buttons
-    for (var i = 0; i < quiz[currentQuestion]["choices"].length; i++) {
+    var shuffledArray = shuffle(quiz[currentQuestion]["choices"])
+    for (var i = 0; i < shuffledArray.length; i++) {
 
         radioButton = document.createElement('input');
         radioButton.type = 'radio';
         radioButton.name = 'quiz';
         radioButton.id = 'choice' + (i + 1);
-        radioButton.value = quiz[currentQuestion]["choices"][i];
+        radioButton.value = shuffledArray[i];
 
         //create label tag, which hold the actual text of the choices
         var label = document.createElement('label');
         label.setAttribute('for', 'choice' + (i + 1));
-        label.innerHTML = quiz[currentQuestion]["choices"][i];
+        label.innerHTML = shuffledArray[i];
 
         //create a <br> tag to separate options
         var br = document.createElement('br');
@@ -48,8 +49,31 @@ function loadQuestion(quiz) {
 
     //setup score for first time
     if (currentQuestion === 0) {
-        document.getElementById('score').innerHTML = '<p>score: 0 right answers out of ' + quiz.length + ' possible</p>';
+        document.getElementById('score').innerHTML = '<p>Score: 0 right answers out of ' + quiz.length + ' possible</p>';
     }
+}
+
+function shuffle(array) {
+    const clone = []
+    for (i = 0; i < array.length; i++) {
+        clone[i] = array[i]
+    }
+
+    let currentIndex = clone.length, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [clone[currentIndex], clone[randomIndex]] = [
+            clone[randomIndex], clone[currentIndex]];
+    }
+
+    return clone;
 }
 
 function checkAnswer(quiz) {
@@ -71,13 +95,13 @@ function checkAnswer(quiz) {
                 userpick = radios[i].value;
             }
             //get index of correct answer
-            if (radios[i].value === quiz[currentQuestion]["correct"]) {
+            if (radios[i].value === quiz[currentQuestion]["choices"][quiz[currentQuestion]["choices"].length - 1]) {
                 correctIndex = i;
             }
         }
 
         //set the color if they got it right, or wrong
-        if (userpick === quiz[currentQuestion]["correct"]) {
+        if (userpick === quiz[currentQuestion]["choices"][quiz[currentQuestion]["choices"].length - 1]) {
             score++;
             document.getElementsByTagName('label')[correctIndex].style.color = "green";
             document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
@@ -143,9 +167,6 @@ function showFinalResults() {
 function createQuiz(quiz) {
     console.log("creating quiz");
     document.getElementById('quiz').innerHTML = "<div id=\"card\" class=\"demo-card-wide mdl-card mdl-shadow--2dp\">\n" +
-        "        <div class=\"mdl-card__title\">\n" +
-        "            <h2 class=\"mdl-card__title-text\">Quiz!!!</h2>\n" +
-        "        </div>\n" +
         "        <div class=\"mdl-card__supporting-text\">\n" +
         "            <div id=\"score\"><p>Score: 0 right answers out of 0 possible</p></div>\n" +
         "            <h5 id=\"question\">Question here</h5>\n" +

@@ -9,12 +9,6 @@
     width: 512px;
 }
 
-.demo-card-wide > .mdl-card__title {
-    color: #fff;
-    height: 176px;
-    background: url(https://combinatronics.com/veernahar/web/master/dev/q.jpg) center / cover;
-}
-
 .demo-card-wide > .mdl-card__menu {
     color: #fff;
 }
