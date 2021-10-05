@@ -3,136 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>Quiz</title>
-    <!--    <style>-->
-    <!--        /*css reset */-->
-    <!--        html, body, div, span, h1, h2, h3, h4, h5, h6, p, code, small, strike, strong, sub, sup, b, u, i {-->
-    <!--            border: 0;-->
-    <!--            font-size: 100%;-->
-    <!--            margin:auto;-->
-    <!--            vertical-align: center;-->
-    <!--            padding: 0;-->
-    <!--        }-->
 
-    <!--        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {-->
-    <!--            display: block;-->
-    <!--        }-->
-
-    <!--        body {-->
-    <!--            font: normal 0.9em/1em "Helvetica Neue", Helvetica, Arial, sans-serif;-->
-    <!--        }-->
-
-    <!--        ol, ul {-->
-    <!--            list-style: none;-->
-    <!--        }-->
-
-    <!--        #frame {-->
-    <!--            max-width: 620px;-->
-    <!--            width: 100%;-->
-    <!--            border: 1px solid #ccc;-->
-    <!--            background: #eee;-->
-    <!--            padding: 10px;-->
-    <!--        }-->
-
-    <!--        #content {-->
-    <!--            font: normal normal 1em/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;-->
-    <!--            margin: 0 40px 10px;-->
-    <!--        }-->
-
-    <!--        h1 {-->
-    <!--            font: normal bold 2em/1.8em "Helvetica Neue", Helvetica, Arial, sans-serif;-->
-    <!--            text-align: left;-->
-    <!--            background: #ccc;-->
-    <!--            padding: 0 15px;-->
-    <!--            width: auto-->
-    <!--        }-->
-
-    <!--        h2 {-->
-    <!--            font: italic bold 1.3em/1.2em "Helvetica Neue", Helvetica, Arial, sans-serif;-->
-    <!--            padding: 5px 15px 15px;-->
-    <!--        }-->
-
-    <!--        input[type=radio] {-->
-    <!--            margin: 0 10px 5px -22px;-->
-    <!--        }-->
-
-    <!--        label {-->
-    <!--            margin: 0 0 5px;-->
-    <!--        }-->
-
-    <!--        #score p {-->
-    <!--            font-size: 0.95em;-->
-    <!--            font-style: italic;-->
-    <!--            color: #666;-->
-    <!--            float: right;-->
-    <!--            margin: 5px 5px 0 0;-->
-    <!--        }-->
-
-    <!--        #score:after {-->
-    <!--            content: ".";-->
-    <!--            display: block;-->
-    <!--            clear: both;-->
-    <!--            visibility: hidden;-->
-    <!--            line-height: 0;-->
-    <!--            height: 0;-->
-    <!--        }-->
-
-    <!--        #response {-->
-    <!--            min-height: 70px;-->
-    <!--            margin: 10px;-->
-    <!--        }-->
-
-    <!--        #response h3 {-->
-    <!--            font: normal bold 1.2em/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;-->
-    <!--            margin: 5px 0;-->
-    <!--        }-->
-    <!--    </style>-->
-    <style>
-        body{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .demo-card-wide.mdl-card {
-            width: 512px;
-        }
-
-        .demo-card-wide > .mdl-card__title {
-            color: #fff;
-            height: 176px;
-            background: url(q.jpg) center / cover;
-        }
-
-        .demo-card-wide > .mdl-card__menu {
-            color: #fff;
-        }
-    </style>
     <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="style.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 </head>
-<body onload="loadQuestion(quiz)">
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">Quiz!!!</h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-            <div id="score"><p>Score: 0 right answers out of 0 possible</p></div>
-            <h2 id="question">Question here</h2>
+<body onload="createQuiz(quiz)">
+<div id="quiz" class="quiz">
 
-            <div id="content">
-            </div>
-
-            <div id="response">
-                <div id="explanation"></div>
-            </div>
-    </div>
-    <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="check" onclick="checkAnswer()">
-            Submit Answer
-        </a>
-    </div>
 </div>
 </body>
 <script>

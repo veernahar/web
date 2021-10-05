@@ -1,10 +1,3 @@
-/**
- * Set the information about your questions here. The correct answer string needs to match
- * the correct choice exactly, as it does string matching. (case sensitive)
- *
- */
-
-
 var currentQuestion = 0;
 var score = 0;
 var askingQuestion = true;
@@ -35,7 +28,6 @@ function loadQuestion(quiz) {
         var br = document.createElement('br');
 
         //attach them to content. Attach br tag, then label, then radio button
-
         document.getElementById('content').insertAdjacentElement("afterbegin", br);
         document.getElementById('content').insertBefore(label, br);
         document.getElementById('content').insertBefore(radioButton, label);
@@ -45,12 +37,12 @@ function loadQuestion(quiz) {
     document.getElementById('question').innerHTML = quiz[currentQuestion]["question"];
 
     //setup score for first time
-    if (currentQuestion == 0) {
-        document.getElementById('score').innerHTML = '<p>Score: 0 right answers out of ' + quiz.length + ' possible</p>';
+    if (currentQuestion === 0) {
+        document.getElementById('score').innerHTML = '<p>score: 0 right answers out of ' + quiz.length + ' possible</p>';
     }
 }
 
-function checkAnswer() {
+function checkAnswer(quiz) {
 
     //are we asking a question, or proceeding to next question?
     if (askingQuestion) {
@@ -68,13 +60,13 @@ function checkAnswer() {
                 userpick = radios[i].value;
             }
             //get index of correct answer
-            if (radios[i].value == quiz[currentQuestion]["correct"]) {
+            if (radios[i].value === quiz[currentQuestion]["correct"]) {
                 correctIndex = i;
             }
         }
 
         //set the color if they got it right, or wrong
-        if (userpick == quiz[currentQuestion]["correct"]) {
+        if (userpick === quiz[currentQuestion]["correct"]) {
             score++;
             document.getElementsByTagName('label')[correctIndex].style.color = "green";
             document.getElementsByTagName('label')[correctIndex].style.fontWeight = "bold";
@@ -102,7 +94,7 @@ function checkAnswer() {
         //if we're not on last question, increase question number
         if (currentQuestion < quiz.length - 1) {
             currentQuestion++;
-            loadQuestion();
+            loadQuestion(quiz);
         } else {
             showFinalResults();
         }
@@ -123,4 +115,32 @@ function showFinalResults() {
     //remove question
     document.getElementById('question').innerHTML = "";
 
+}
+
+function createQuiz(quiz) {
+    console.log("creating quiz");
+    document.getElementById('quiz').innerHTML = "<div class=\"demo-card-wide mdl-card mdl-shadow--2dp\">\n" +
+        "        <div class=\"mdl-card__title\">\n" +
+        "            <h2 class=\"mdl-card__title-text\">Quiz!!!</h2>\n" +
+        "        </div>\n" +
+        "        <div class=\"mdl-card__supporting-text\">\n" +
+        "            <div id=\"score\"><p>Score: 0 right answers out of 0 possible</p></div>\n" +
+        "            <h2 id=\"question\">Question here</h2>\n" +
+        "\n" +
+        "            <div id=\"content\">\n" +
+        "            </div>\n" +
+        "\n" +
+        "            <div id=\"response\">\n" +
+        "                <div id=\"explanation\"></div>\n" +
+        "            </div>\n" +
+        "        </div>\n" +
+        "        <div class=\"mdl-card__actions mdl-card--border\">\n" +
+        "            <a class=\"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect\" id=\"check\"\n" +
+        "               onclick=\"checkAnswer(quiz)\">\n" +
+        "                Submit Answer\n" +
+        "            </a>\n" +
+        "        </div>\n" +
+        "    </div>"
+    console.log("loading first question")
+    loadQuestion(quiz);
 }
