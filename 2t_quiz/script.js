@@ -143,6 +143,15 @@ function checkAnswer(quiz) {
 function showFinalResults() {
     console.log('showing final results')
 
+
+    if (document.getElementById('card').classList.contains('wrong_answer')) {
+        document.getElementById('card').classList.remove('wrong_answer')
+    }
+
+    if (document.getElementById('card').classList.contains('correct_answer')) {
+        document.getElementById('card').classList.remove('correct_answer')
+    }
+
     document.getElementById('content').innerHTML = '<h5>You\'re Done!</h5>';
     document.getElementById('content').innerHTML += '<p>Click next to go to other 2ts like this one</p>';
     //delete the button
