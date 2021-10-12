@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="script" level="application" />
     <orderEntry type="library" name="style" level="application" />
+    <orderEntry type="library" name="quiz" level="application" />
   </component>
 </module>
