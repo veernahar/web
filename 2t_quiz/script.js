@@ -153,7 +153,7 @@ function showFinalResults() {
     }
 
     document.getElementById('content').innerHTML = '<h5>You\'re Done!</h5>';
-    document.getElementById('content').innerHTML += '<p>Click next to go to other 2ts like this one</p>';
+    document.getElementById('content').innerHTML += '<p>Click below to see more 2t\'s or to redo this one!</p>';
     //delete the button
     const button = document.getElementById('check');
     button.parentNode.removeChild(button); //js requires you to delete elements from the parent
