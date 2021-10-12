@@ -162,7 +162,11 @@ function showFinalResults() {
     var elem = document.getElementById("actions");
     elem.innerHTML = "<a class=\"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect\" id=\"check\"\n" +
         "               href='https://webdesign.eastsideprep.org/~dyezbick/twotruths/index.html'>\n" +
-        "                Go ->" +
+        "                Go to other 2t's" +
+        "            </a>\n" +
+        "<a class=\"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect\" id=\"check\"\n" +
+        "               href='2t.html'>\n" +
+        "                restart this 2t" +
         "            </a>\n"
     elem = document.getElementById("question");
     elem.parentNode.removeChild(elem);
