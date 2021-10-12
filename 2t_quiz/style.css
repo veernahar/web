@@ -1,0 +1,28 @@
+.demo-card-wide.mdl-card {
+    width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+    color: black;
+    height: 270px;
+    background: url('2Truths1Lie_683x384-copy.png') center;
+}
+
+.demo-card-wide > .mdl-card__title__2 {
+    color: black;
+    height: 270px;
+    background: url('more.jpg') center / cover;
+    margin-top: 0
+}
+.demo-card-wide > .mdl-card__title__no-image {
+    color: black;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

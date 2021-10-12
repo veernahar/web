@@ -1,0 +1,21 @@
+.quiz {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.demo-card-wide.mdl-card {
+    width: 512px;
+}
+
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}
+
+.wrong_answer{
+    border: 4px solid red !important;
+}
+
+.correct_answer{
+    border: 4px solid green !important;
+}
