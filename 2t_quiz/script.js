@@ -152,7 +152,7 @@ function showFinalResults() {
 
     var elem = document.getElementById("actions");
     elem.innerHTML = "<a class=\"mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect\" id=\"check\"\n" +
-        "               href='www.webdesign.eastsideprep.org/~dyezbick/twotruths/'>\n" +
+        "               href='https://webdesign.eastsideprep.org/~dyezbick/twotruths/index.html'>\n" +
         "                Go ->" +
         "            </a>\n"
     elem = document.getElementById("question");
